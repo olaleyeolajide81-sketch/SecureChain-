@@ -1,0 +1,27 @@
+[package]
+name = "secure_chain"
+version = "1.0.0"
+description = "Decentralized File Verification System on Stellar"
+authors = ["SecureChain Team"]
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+stellar-contract-sdk = "0.8.0"
+sha2 = "0.10.0"
+hex = "0.4.0"
+
+[dev-dependencies]
+stellar-contract-sdk = { version = "0.8.0", features = ["testutils"] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[[bin]]
+name = "secure_chain"
+path = "src/main.rs"
